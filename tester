@@ -1,0 +1,40 @@
+package com.example.demo;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class DetailsController {
+
+    @GetMapping("/details")
+    public String showDetails(Model model) {
+        // Create an instance of Employee and set its properties
+        Employee employee = new Employee();
+        employee.setLTIPSID("12345");
+        employee.setAssociateName("Karthik Mehrotra");
+
+        // Add the employee object to the model attribute
+        model.addAttribute("employee", employee);
+
+        // Return the name of the HTML template (without the .html extension)
+        return "details";
+    }
+}
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+</head>
+<body>
+    <h1>Employee Details</h1>
+    <div>
+        <p>LTIPSID: <span th:text="${employee.LTIPSID}">N/A</span></p>
+        <p>Associate Name: <span th:text="${employee.associateName}">N/A</span></p>
+    </div>
+    <a href="/dashboard">Back to Dashboard</a>
+</body>
+</html>
