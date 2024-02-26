@@ -1,54 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Tracker</title>
-</head>
-<body>
-    <div>
-        <p>Total Employees: <span th:text="${totalEmployees}">N/A</span></p>
-        <p>Active Users:</p>
-        <p>Inactive Users:</p>
-    </div>
-    <a href="/details">View Employee Details</a>
-</body>
-</html>
-
-
 package com.example.demo;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+public class Employee {
+    private String ps_id;
+    private String associateName;
 
-@Controller
-public class DashboardController {
-    @GetMapping("/dashboard")
-    public String showDashboard(Model model) {
-        int totalEmployees = 100;
-        model.addAttribute("totalEmployees", totalEmployees);
-        return "dashboard";
+    public Employee() {
+        // Default constructor
     }
-}
 
+    public String getPs_id() {
+        return ps_id;
+    }
 
-package com.example.demo;
+    public void setPs_id(String ps_id) {
+        this.ps_id = ps_id;
+    }
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+    public String getAssociateName() {
+        return associateName;
+    }
 
-@Controller
-public class DetailsController {
-    @GetMapping("/details")
-    public String showDetails(Model model) {
-        // Create an instance of Employee and set its properties
-        Employee employee = new Employee();
-        employee.setPs_id("123");
-        employee.setAssociateName("Karthik Mehrotra");
-        // Add the employee object to the model attribute
-        model.addAttribute("employee", employee);
-        // Return the name of the HTML template (without the html extension)
-        return "details";
+    public void setAssociateName(String associateName) {
+        this.associateName = associateName;
     }
 }
